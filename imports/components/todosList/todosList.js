@@ -8,9 +8,19 @@ class TodosListCtrl {
   constructor($scope) {
     $scope.viewModel(this);
 
+    this.hideCompleted = false;
+
     this.helpers({
       tasks() {
-        return Tasks.find({}, {
+        const selector = {};
+
+        if (this.getReactively('hideCompleted')) {
+          selector.checked = {
+            $ne: true
+          }
+        }
+
+        return Tasks.find(selector, {
           sort: {
             createdAt: -1
           }
@@ -18,14 +28,14 @@ class TodosListCtrl {
       }
     });
   }
-  
+
   addTask(newTask) {
     Tasks.insert({
       text: newTask,
       createdAt: new Date
     });
   }
-  
+
   setChecked(task) {
     Tasks.update(task._id, {
       $set: {
@@ -33,11 +43,11 @@ class TodosListCtrl {
       }
     })
   }
-  
+
   removeTask(task) {
     Tasks.remove(task._id);
   }
-  
+
 }
 
 export default angular.module('todosList', [
