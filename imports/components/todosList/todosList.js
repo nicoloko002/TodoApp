@@ -25,6 +25,13 @@ class TodosListCtrl {
             createdAt: -1
           }
         });
+      },
+      incompleteCount() {
+        return Tasks.find({
+          checked: {
+            $ne: true
+          }
+        }).count();
       }
     });
   }
