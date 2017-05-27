@@ -2,6 +2,7 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import { Meteor } from 'meteor/meteor';
 import { Tasks } from '../../api/tasks.js';
+import slideMenu from 'slideout';
 
 import template from './todosList.html';
 
@@ -12,6 +13,17 @@ class TodosListCtrl {
     this.subscribe('tasks');
 
     this.hideCompleted = false;
+
+    var menu = new slideMenu({
+      'panel': document.getElementById('panel'),
+      'menu':  document.getElementById('menu'),
+      'padding': 256,
+      'tolerance': 70
+    })
+
+    document.querySelector('.toggle-button').addEventListener('click', function() {
+        menu.toggle();
+      });
 
     this.helpers({
       tasks() {
