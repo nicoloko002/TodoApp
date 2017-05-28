@@ -125,6 +125,8 @@ header .hide-completed {
     }
 }
 
+ /*Menu Lateral*/
+
 .slideout-menu {
   position: fixed;
   left: 0;

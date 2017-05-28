@@ -20,3 +20,4 @@ angular-templates
 accounts-password
 dotansimha:accounts-ui-angular
 practicalmeteor:mocha
+iron:router
